@@ -1,0 +1,20 @@
+<form #dynamicForm="ngForm" (ngSubmit)="submitForm(dynamicForm)">
+  <div *ngFor="let item of formData">
+    <span>{{item.label}}</span>
+    <div *ngIf="item.type == 'TextField'">
+      <input type="text" name='{{item.name}}' ngModel>
+    </div>
+    <div *ngIf="item.type == 'DropDown'">
+      <select name="{{item.name}}" id="" ngModel>
+        <option value="">Select</option>
+        <option *ngFor="let option of item.values" [value]="option">{{option}}</option>
+      </select>
+    </div>
+  </div>
+  <input type="submit" value="Submit Form">
+</form>
+<hr>
+<div *ngFor="let item of submittedFormData">
+  <p>{{item.person_name}}</p>
+  <p>{{item.states}}</p>
+</div>
